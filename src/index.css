@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --vault-black: #070a08;
+  --vault-graphite: #0e1511;
+  --vault-lime: #b4f000;
+  --vault-lime-bright: #ccff33;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(ellipse at top, #14201a 0%, #0a0f0c 55%, #050806 100%);
+  color: #e8f5e0;
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Ambient lime grid + glow texture */
+.vault-bg {
+  background-image:
+    radial-gradient(circle at 50% 0%, rgba(180, 240, 0, 0.12) 0%, transparent 45%),
+    radial-gradient(circle at 15% 85%, rgba(45, 212, 191, 0.05) 0%, transparent 40%),
+    radial-gradient(circle at 85% 90%, rgba(34, 197, 94, 0.06) 0%, transparent 40%),
+    linear-gradient(0deg, rgba(180, 240, 0, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(180, 240, 0, 0.03) 1px, transparent 1px);
+  background-size: auto, auto, auto, 40px 40px, 40px 40px;
+}
+
+/* Animated aurora glow behind content */
+.aurora-glow {
+  background: linear-gradient(
+    90deg,
+    rgba(180, 240, 0, 0.08) 0%,
+    rgba(45, 212, 191, 0.05) 50%,
+    rgba(34, 197, 94, 0.06) 100%
+  );
+  background-size: 200% 200%;
+  animation: gradient-shift 4s ease-in-out infinite;
+}
+
+/* Lime gradient text */
+.text-gold-gradient {
+  background: linear-gradient(135deg, #ccff33 0%, #b4f000 45%, #7da600 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Shimmering lime text */
+.text-shimmer {
+  background: linear-gradient(90deg, #7da600 0%, #ccff33 25%, #f0ffcc 50%, #ccff33 75%, #7da600 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s linear infinite;
+}
+
+/* Metallic panel surface — dark with lime tint */
+.metal-surface {
+  background: linear-gradient(145deg, #1a2620 0%, #0e1511 45%, #080b09 100%);
+  border: 1px solid rgba(180, 240, 0, 0.25);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    inset 0 -2px 6px rgba(0, 0, 0, 0.6),
+    0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* The big CTA lime button */
+.btn-gold {
+  background: linear-gradient(180deg, #ccff33 0%, #b4f000 50%, #8fbf00 100%);
+  color: #0a1206;
+  box-shadow:
+    0 4px 0 #5c7d00,
+    0 0 25px rgba(180, 240, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  transition: transform 0.15s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+.btn-gold:hover {
+  filter: brightness(1.08);
+  transform: translateY(-2px);
+  box-shadow:
+    0 6px 0 #5c7d00,
+    0 0 40px rgba(180, 240, 0, 0.7),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+.btn-gold:active {
+  transform: translateY(2px);
+  box-shadow:
+    0 1px 0 #5c7d00,
+    0 0 20px rgba(180, 240, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* Trust badge pill */
+.trust-pill {
+  background: rgba(180, 240, 0, 0.08);
+  border: 1px solid rgba(180, 240, 0, 0.2);
+  backdrop-filter: blur(8px);
+}
+
+/* Glassy card */
+.glass-card {
+  background: linear-gradient(145deg, rgba(26, 38, 32, 0.7) 0%, rgba(14, 21, 17, 0.85) 100%);
+  border: 1px solid rgba(180, 240, 0, 0.15);
+  backdrop-filter: blur(12px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+/* Radial confetti burst (uses --tx / --ty CSS vars per particle) */
+@keyframes burst-out {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--tx), var(--ty)) scale(0);
+    opacity: 0;
+  }
+}
+
+/* Reduced motion: kill the heavy animations */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
